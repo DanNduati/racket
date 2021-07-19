@@ -1,0 +1,92 @@
+#lang typed/racket
+(require "include/cs151-core.rkt")
+(require "include/cs151-image.rkt")
+(require "include/cs151-universe.rkt")
+(require typed/test-engine/racket-tests)
+
+(define-type (Optional A) (U 'None (Some A)))
+(define-struct (Some A)
+	([value : A]))
+
+(define-type Sudoku (Listof Integer))
+(define-struct SudokuWorld
+([cell-size : Integer]
+[font-size : Byte]
+[grid-color : Image-Color]
+[bg-color : Image-Color]
+[clue-color : Image-Color]
+[user-color : Image-Color]
+[to-change-color : Image-Color]
+[puzzle : Sudoku]
+[user-answer : Sudoku]
+[waiting-input : (Optional Integer)]))
+
+(define-struct Click
+([x : Integer]
+[y : Integer]))
+
+;; a sample sudoku puzzle
+;; you can use this for testing
+(: sudoku1 : Sudoku)
+(define sudoku1
+(list 0 0 6 0 0 8 5 0 0
+0 0 0 0 7 0 6 1 3
+0 0 0 0 0 0 0 0 9
+0 0 0 0 9 0 0 0 1
+0 0 1 0 0 0 8 0 0
+4 0 0 5 3 0 0 0 0
+1 0 7 0 5 3 0 0 0
+0 5 0 0 6 4 0 0 0
+3 0 0 1 0 0 0 6 0))
+;; a sample SudokuWorld
+(: sw1 : SudokuWorld)
+(define sw1 (SudokuWorld 36
+24
+'black
+'white
+'black
+'blue
+'gray
+sudoku1
+(make-list 81 0)
+'None))
+; you may need to set some image's color to transparent
+; and here is its definition
+(: transparent : Image-Color)
+(define transparent (color 0 0 0 0))
+; ======= Task 0: general helper functions
+(: get-sublist : All (A) (Listof A) Integer Integer -> (Listof A))
+; ======= Task 1: draw a grid based on the given Sudoku, sizes, and colors
+(: draw-grid : Sudoku Integer Byte Image-Color Image-Color Image-Color ->
+Image)
+; ======= Task 2: more general helper functions
+;; You are welcome to define more helper functions for all tasks.
+(: editable? : SudokuWorld Integer -> Boolean)
+(: clicked-within : Click SudokuWorld -> (Optional Integer))
+(: update-cell-by-index : Sudoku Integer Integer -> Sudoku)
+; ======= Task 3: universe
+(: draw : SudokuWorld -> Image)
+; draw a 9*9 grid, the index of each cell is from 0-80, starting from top-left
+; corner. The numbering of index goes from left to right first, then from top
+; to down.
+; user's inputs and clicking effect should be correctly rendered as well
+(define (draw world)
+(error "draw: todo"))
+(: react-to-mouse : SudokuWorld Integer Integer Mouse-Event -> SudokuWorld)
+; handle user input
+(define (react-to-mouse world cx cy e)
+(error "react-to-mouse: todo"))
+(: react-to-keyboard : SudokuWorld String -> SudokuWorld)
+; depending on the pressed key, put a new number into the grid or not
+(define (react-to-keyboard world key)
+(error "react-to-keyboard: todo"))
+(: run : Integer Byte
+Image-Color Image-Color Image-Color Image-Color Image-Color
+Sudoku -> SudokuWorld)
+; create a new world
+(define (run cell-size font-size
+grid-c bg-c clue-c user-c to-change-c
+sudoku)
+(error "run: todo"))
+(test)
+(: get-sublist : All (A) (Listof A) Integer Integer -> (Listof A))
