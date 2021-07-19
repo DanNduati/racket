@@ -77,12 +77,32 @@
 ;The class system itself is implemented by the racket/class library abd the racket/gui/base library provides the GUI and drawing classes
 ;By convection the classes are given names ending in %
 
+(require racket/class
+         racket/gui/base)
+(define f(new frame%
+              [label "My Art"]
+              [width 300]
+              [height 300]
+              [alignment '(center center)]))
 
+(send f show #t)
 
+;The new form creates an instance of a class, where initialization arguments like label and width are provided by name.
+;The send form calls a method of the object such as show with arguments after the method name
+;The argument #t in this case is the boolean true
 
+;pictures generated with slideshow(#lang slideshow) encapsulate a function that uses the graphics toolbox's drawing command to render the picture to a drawing context such as a canvas in a frame
+;The 'make-pict-drawer' function from slideshow exposes a picture drawing function
+;We can use make-pict-drawer in the canvas painting callback to draw a picture into a canvas
 
+(define (add-drawing p)
+  (let ([drawer (make-pict-drawer p)])
+  (new canvas%
+         [parent f]
+         [style '(border)]
+         [paint-callback (lambda (self dc)
+                           (drawer dc 0 0))])))
 
-
-
-
-
+(add-drawing (circle 10))
+(add-drawing (code (drawsquare 10)))
+(add-drawing (colorize (filled-flash 50 30) "yellow"))
