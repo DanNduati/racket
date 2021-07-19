@@ -10,4 +10,4 @@ Racket is a general-purpose, multi-paradigm programming language based on the Sc
 	├── test.rtk	#solution to the assignment
 	└── README.md
 
-## Runthrough of the [intoduction to racket with pictures](!https://docs.racket-lang.org/quick/)
+### [intoduction to racket with pictures](https://docs.racket-lang.org/quick/)
