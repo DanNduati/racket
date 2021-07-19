@@ -1,4 +1,7 @@
 #lang slideshow
+;import additional libraries
+(require pict/flash)
+(require slideshow/code)
 ;An introduction to racket with pictures
 ;Basic picture constructors
 (circle 10)
@@ -60,5 +63,9 @@
 ;parenthisezed names after a lambda are the arguments of the function
 ;Expression after the argument names is the function body
 ;other examples
-((lambda(x,y)(list y x)))
+((lambda(x y)(list y x))1 2)
+((lambda (x [y 5]) (list y x)) 1)
+;modules
+(filled-flash 40 30)
+(code (circle 10))
 
