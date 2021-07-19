@@ -67,5 +67,22 @@
 ((lambda (x [y 5]) (list y x)) 1)
 ;modules
 (filled-flash 40 30)
-(code (circle 10))
+;macros
+(code (circle 10)) ;the result is a picture of the code
+
+;objects
+;This is a sophisticated language extension. Objects are sometimes better than functions
+;objects work especially well for graphical user interfaces
+;The API for Racket's GUI and graphics system is expressed in terms of objects and classes
+;The class system itself is implemented by the racket/class library abd the racket/gui/base library provides the GUI and drawing classes
+;By convection the classes are given names ending in %
+
+
+
+
+
+
+
+
+
 
